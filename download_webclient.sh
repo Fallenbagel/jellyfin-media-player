@@ -37,7 +37,7 @@ function get_resource_version {
 if [[ "$1" == "--gen-fingerprint" ]]
 then
     (
-        get_resource_version iwalton3/jellyfin-web-jmp
+        get_resource_version Fallenbagel/jellyfin-web-jmp
     ) | tee az-cache-fingerprint.list
     exit 0
 fi
@@ -50,7 +50,7 @@ then
     update_web_client="yes"
 elif [[ -e ".last_wc_version" ]]
 then
-    if [[ "$(get_resource_version iwalton3/jellyfin-web-jmp)" != "$(cat .last_wc_version)" ]]
+    if [[ "$(get_resource_version Fallenbagel/jellyfin-web-jmp)" != "$(cat .last_wc_version)" ]]
     then
         update_web_client="yes"
     fi
@@ -59,8 +59,8 @@ fi
 if [[ "$update_web_client" == "yes" ]]
 then
     echo "Downloading web client..."
-    wc_version=$(get_resource_version iwalton3/jellyfin-web-jmp)
-    download_compat dist.zip "https://github.com/iwalton3/jellyfin-web-jmp/releases/download/$wc_version/dist.zip" "wc"
+    wc_version=$(get_resource_version Fallenbagel/jellyfin-web-jmp)
+    download_compat dist.zip "https://github.com/Fallenbagel/jellyfin-web-jmp/releases/download/jwc-10.8.0-intros/dist.zip" "wc"
     if [[ "$DOWNLOAD_ONLY" != "1" ]]
     then
         rm -r build/dist 2> /dev/null
